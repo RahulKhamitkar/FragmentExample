@@ -18,9 +18,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.Item
         tvDescription = findViewById(R.id.tvDescription);
         descriptions = getResources().getStringArray(R.array.descriptions);
 
-
         //the phone is in Portrait mode
-        if(findViewById(R.id.portrait)!= null){
+        if (findViewById(R.id.portrait) != null) {
 
             FragmentManager manager = this.getSupportFragmentManager();
             manager.beginTransaction()
@@ -30,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.Item
 
         }
 
-        if (findViewById(R.id.layout_landscape) != null){
+        //the phone is in Landscape mode
+        if (findViewById(R.id.layout_landscape) != null) {
 
             FragmentManager manager = this.getSupportFragmentManager();
             manager.beginTransaction()
@@ -46,11 +46,14 @@ public class MainActivity extends AppCompatActivity implements ListFragment.Item
     public void itemSelected(int index) {
         tvDescription.setText(descriptions[index]);
 
-        if(findViewById(R.id.portrait)!= null){
+        //Phone is in portrait mode
+        if (findViewById(R.id.portrait) != null) {
             FragmentManager manager = this.getSupportFragmentManager();
             manager.beginTransaction()
                     .show(manager.findFragmentById(R.id.detailFragment))
                     .hide(manager.findFragmentById(R.id.listFragment))
+
+                    //When user clicks the back in portrait mode it will show list fragment
                     .addToBackStack(null)
                     .commit();
         }

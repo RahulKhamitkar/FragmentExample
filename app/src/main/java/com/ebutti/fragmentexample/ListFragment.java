@@ -4,8 +4,6 @@ package com.ebutti.fragmentexample;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,8 +13,7 @@ public class ListFragment extends android.support.v4.app.ListFragment {
 
     ItemSelected activity;
 
-
-    public interface ItemSelected{
+    public interface ItemSelected {
         void itemSelected(int index);
     }
 
@@ -36,11 +33,13 @@ public class ListFragment extends android.support.v4.app.ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String [] data = getResources().getStringArray(R.array.pieces);
-        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,data));
+        String[] data = getResources().getStringArray(R.array.pieces);
+        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data));
 
 
-        if(this.getActivity().findViewById(R.id.layout_landscape)!= null){
+        //Phone is in landscape mode
+        if (this.getActivity().findViewById(R.id.layout_landscape) != null) {
+            // To show the detail of first Item
             activity.itemSelected(0);
         }
     }
@@ -48,7 +47,6 @@ public class ListFragment extends android.support.v4.app.ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-
         activity.itemSelected(position);
     }
 }
